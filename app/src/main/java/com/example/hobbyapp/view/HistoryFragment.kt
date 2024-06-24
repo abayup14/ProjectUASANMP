@@ -10,7 +10,6 @@ import com.example.hobbyapp.R
 
 class HistoryFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

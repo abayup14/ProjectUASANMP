@@ -9,7 +9,6 @@ import com.example.hobbyapp.R
 
 class DetailFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
