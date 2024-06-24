@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.hobbyapp.R
+import com.example.hobbyapp.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
+    private lateinit var binding:FragmentRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +20,9 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
+//        return inflater.inflate(R.layout.fragment_register, container, false)
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        return binding.root
     }
     
 }
