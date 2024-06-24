@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.hobbyapp.R
 import com.example.hobbyapp.databinding.FragmentRegisterBinding
 import com.example.hobbyapp.model.User
@@ -61,11 +62,12 @@ class RegisterFragment : Fragment() {
                     alert.setTitle("Informasi")
                     alert.setMessage("Berhasil mendaftarkan user.\nLogin dengan username dan password yang sudah didaftarkan.")
                     alert.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+                        val action = RegisterFragmentDirections.actionLoginFragment()
+                        Navigation.findNavController(it).navigate(action)
                     })
                     alert.create().show()
                 })
                 dialog.setNegativeButton("Batal", DialogInterface.OnClickListener { dialog, which ->
-                    dialog.dismiss()
                 })
                 dialog.create().show()
             } else {

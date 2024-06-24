@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+//        setSupportActionBar(null)
 
         navController = (supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment).navController
 //        NavigationUI.setupActionBarWithNavController(this, navController)

@@ -20,14 +20,14 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
     fun register(list: List<User>) {
         launch {
             val db = buildDB(getApplication())
-            db.userDao().insertUser(*list.toTypedArray())
+            db.userDao().insertAll(*list.toTypedArray())
         }
     }
 
     fun login(username: String, password: String) {
         launch {
             val db = buildDB(getApplication())
-            userLD.postValue(db.userDao().getUserLogin(username, password))
+            userLD.postValue(db.userDao().selectUser(username, password))
         }
     }
 }
