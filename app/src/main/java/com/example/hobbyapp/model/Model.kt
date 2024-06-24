@@ -18,3 +18,14 @@ data class User (
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
 }
+
+@Entity
+data class News(
+    @ColumnInfo(name="judul") var judul:String,
+    @ColumnInfo(name="url") var url:String,
+    @ColumnInfo(name="deskripsi") var deskripsi:String,
+    @ColumnInfo(name="pengarang") var pengarang:Int,
+    @ColumnInfo(name="detail") var detail:String
+) {
+    @PrimaryKey(autoGenerate = true) var id:Int = 0
+}
