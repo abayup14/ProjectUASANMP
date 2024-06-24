@@ -60,7 +60,6 @@ class RegisterFragment : Fragment() {
                     alert.setTitle("Informasi")
                     alert.setMessage("Berhasil mendaftarkan user.\nLogin dengan username dan password yang sudah didaftarkan.")
                     alert.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
-                        dialog.dismiss()
                     })
                     alert.create().show()
                 })
@@ -72,7 +71,6 @@ class RegisterFragment : Fragment() {
                 dialog.setTitle("Informasi")
                 dialog.setMessage("Gagal mendaftarkan user.\nCek apakah password dengan konfirmasinya sama")
                 dialog.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
-                    dialog.dismiss()
                 })
                 dialog.create().show()
             }
