@@ -13,7 +13,9 @@ data class User (
     @ColumnInfo(name = "nama_belakang")
     var nama_belakang: String,
     @ColumnInfo(name = "password")
-    var password: String
+    var password: String,
+    @ColumnInfo(name = "email")
+    var email: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0

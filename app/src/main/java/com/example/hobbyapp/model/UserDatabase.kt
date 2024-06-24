@@ -5,8 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.hobbyapp.util.DB_NAME
+import com.example.hobbyapp.util.MIGRATION_1_2
 
-@Database(entities = arrayOf(User::class), version = 1)
+@Database(entities = arrayOf(User::class), version = 2)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
@@ -19,6 +20,7 @@ abstract class UserDatabase : RoomDatabase() {
             UserDatabase::class.java,
             DB_NAME
         )
+            .addMigrations(MIGRATION_1_2)
             .build()
 
         operator fun invoke(context: Context) {

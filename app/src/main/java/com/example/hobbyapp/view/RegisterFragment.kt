@@ -52,7 +52,8 @@ class RegisterFragment : Fragment() {
                         username,
                         nama_depan,
                         nama_belakang,
-                        password
+                        password,
+                        email
                     )
                     val list = listOf(user)
                     viewModel.register(list)
