@@ -1,6 +1,7 @@
 package com.example.hobbyapp.view
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -38,6 +39,12 @@ class ProfileFragment : Fragment(), UpdateUserClick {
             val id = sharedPref.getInt("KEY_ID", 0)
             viewModel.selectUser(id)
             binding.updateListener = this
+            binding.btnLogout.setOnClickListener {
+                HomeActivity.logout(requireActivity())
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
             observeViewModel()
         }
 
