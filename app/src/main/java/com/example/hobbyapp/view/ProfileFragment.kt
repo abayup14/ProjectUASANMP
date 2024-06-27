@@ -1,6 +1,8 @@
 package com.example.hobbyapp.view
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -64,12 +66,22 @@ class ProfileFragment : Fragment(), UpdateUserClick {
     }
 
     override fun updateUser(v: View, obj: User) {
-        viewModel.update(
-            obj.nama_depan,
-            obj.nama_belakang,
-            obj.password,
-            obj.uuid)
-        Toast.makeText(v.context, "User updated", Toast.LENGTH_SHORT).show()
+        val alert = AlertDialog.Builder(activity)
+        alert.setTitle("Konfirmasi")
+        alert.setMessage("Apakah anda yakin untuk mengubah data akun ini?")
+        alert.setPositiveButton("Ubah", DialogInterface.OnClickListener { dialog, which ->
+            viewModel.update(
+                obj.nama_depan,
+                obj.nama_belakang,
+                obj.password,
+                obj.uuid)
+            alert.setTitle("Informasi")
+            alert.setMessage("Berhasil ubah data")
+            alert.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->  })
+            alert.create().show()
+        })
+        alert.setNegativeButton("Batal", DialogInterface.OnClickListener { dialog, which ->
+        })
+        alert.create().show()
     }
-
 }
