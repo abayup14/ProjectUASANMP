@@ -70,11 +70,6 @@ class LoginFragment : Fragment() {
                     val shared: SharedPreferences = requireActivity().getSharedPreferences(sharedPref, Context.MODE_PRIVATE)
                     val editor = shared.edit()
                     editor.putInt("KEY_ID", it.uuid)
-                    editor.putString("KEY_USERNAME", it.username)
-                    editor.putString("KEY_NAMA_DEPAN", it.nama_depan)
-                    editor.putString("KEY_NAMA_BELAKANG", it.nama_belakang)
-                    editor.putString("KEY_EMAIL", it.email)
-                    editor.putString("KEY_PASS", it.password)
                     editor.apply()
 
                     val intent = Intent(activity, HomeActivity::class.java)
