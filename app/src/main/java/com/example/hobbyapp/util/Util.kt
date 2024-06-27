@@ -33,6 +33,7 @@ fun buildDb(context: Context):NewsDatabase {
     val db = Room.databaseBuilder(context,
         NewsDatabase::class.java, DB_NAME)
         .addMigrations(MIGRATION_NEWS_1_2)
+        .addMigrations(MIGRATION_NEWS_2_3)
         .build()
 
     return db
@@ -42,6 +43,14 @@ val MIGRATION_NEWS_1_2 = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL(
             "ALTER TABLE news ADD COLUMN kategori STRING DEFAULT '' not null"
+        )
+    }
+}
+
+val MIGRATION_NEWS_2_3 = object : Migration(2, 3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "ALTER TABLE news DROP COLUMN kategori"
         )
     }
 }

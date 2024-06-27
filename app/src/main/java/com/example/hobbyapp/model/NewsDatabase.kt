@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.hobbyapp.util.buildDb
 
-@Database(entities = arrayOf(News::class), version =  2)
+@Database(entities = arrayOf(News::class), version =  3)
 abstract class NewsDatabase: RoomDatabase() {
     abstract fun newsDao(): NewsDao
 
