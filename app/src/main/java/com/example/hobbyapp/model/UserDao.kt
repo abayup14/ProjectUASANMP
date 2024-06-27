@@ -16,6 +16,6 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE username= :username AND password= :password")
     fun selectUser(username: String, password: String): User
 
-    @Query("UPDATE user SET username= :username, nama_depan= :nama_depan, nama_belakang= :nama_belakang, password= :password, email= :email WHERE uuid= :id")
-    fun updateUser(username: String, nama_depan: String, nama_belakang: String, password: String, email: String, id: Int)
+    @Query("UPDATE user SET nama_depan= :nama_depan, nama_belakang= :nama_belakang, password= :password WHERE uuid= :id")
+    fun updateUser(nama_depan: String, nama_belakang: String, password: String, id: Int)
 }

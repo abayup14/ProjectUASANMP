@@ -30,4 +30,11 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
             userLD.postValue(db.userDao().selectUser(username, password))
         }
     }
+
+    fun update(nama_depan: String, nama_belakang: String, password: String, uuid: Int) {
+        launch {
+            val db = buildDB(getApplication())
+            db.userDao().updateUser(nama_depan, nama_belakang, password, uuid)
+        }
+    }
 }

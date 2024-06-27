@@ -1,8 +1,10 @@
 package com.example.hobbyapp.view
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -64,6 +66,17 @@ class LoginFragment : Fragment() {
                 alert.setTitle("Informasi")
                 alert.setMessage("Anda berhasil login. Selamat datang ${it.nama_depan} ${it.nama_belakang}")
                 alert.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+                    val sharedPref = activity?.packageName
+                    val shared: SharedPreferences = requireActivity().getSharedPreferences(sharedPref, Context.MODE_PRIVATE)
+                    val editor = shared.edit()
+                    editor.putInt("KEY_ID", it.uuid)
+                    editor.putString("KEY_USERNAME", it.username)
+                    editor.putString("KEY_NAMA_DEPAN", it.nama_depan)
+                    editor.putString("KEY_NAMA_BELAKANG", it.nama_belakang)
+                    editor.putString("KEY_EMAIL", it.email)
+                    editor.putString("KEY_PASS", it.password)
+                    editor.apply()
+
                     val intent = Intent(activity, HomeActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
