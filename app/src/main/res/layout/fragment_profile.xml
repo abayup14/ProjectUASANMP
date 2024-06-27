@@ -75,7 +75,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtChangeFirstName"
-                    android:text="@{user.nama_depan}"
+                    android:text="@={user.nama_depan}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -96,7 +96,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtChangePassword"
-                    android:text="@{user.password}"
+                    android:text="@={user.password}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -140,7 +140,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtChangeLastName"
-                    android:text="@{user.nama_belakang}"
+                    android:text="@={user.nama_belakang}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
