@@ -32,5 +32,8 @@
         <action
             android:id="@+id/actionItemHome"
             app:destination="@id/itemHome" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>

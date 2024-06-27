@@ -6,3 +6,9 @@ import com.example.hobbyapp.model.User
 interface UpdateUserClick {
     fun updateUser(v: View, obj: User)
 }
+
+
+interface NewsDetailClick {
+    fun onNewsDetailClick(v: View)
+}
+

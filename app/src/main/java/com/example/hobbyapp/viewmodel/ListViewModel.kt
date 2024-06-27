@@ -35,7 +35,18 @@ class ListViewModel(application: Application)
         }
     }
 
+    fun clearTask(news: News) {
+        launch {
+            val db = NewsDatabase.buildDatabase(
+                getApplication()
+            )
+//            db.todoDao().updateDone(todo.uuid)
 
+            newsLD.postValue(db.newsDao().selectAllNews())
+        }
+    }
 
 }
+
+
 

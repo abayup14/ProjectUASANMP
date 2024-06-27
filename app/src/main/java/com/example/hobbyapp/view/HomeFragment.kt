@@ -5,9 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hobbyapp.R
+import com.example.hobbyapp.databinding.FragmentHomeBinding
+import com.example.hobbyapp.viewmodel.ListViewModel
 
 class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var viewModel: ListViewModel
+    private val todoListAdapter  = HomeListAdapter(arrayListOf(), { item -> viewModel.clearTask(item) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,10 +28,47 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
+        return  binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+        viewModel.refresh()
+        binding.recView.layoutManager = LinearLayoutManager(context)
+        binding.recView.adapter = todoListAdapter
+
+        observeViewModel()
+    }
+
+    fun observeViewModel() {
+        viewModel.newsLD.observe(viewLifecycleOwner, Observer {
+            todoListAdapter.updateNewsList(it)
+            if(it.isEmpty()) {
+                binding.recView?.visibility = View.GONE
+                binding.txtError2.setText("Your todo still empty.")
+            } else {
+                binding.recView?.visibility = View.VISIBLE
+            }
+        })
+
+        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
+            if(it == false) {
+                binding.progressBar2?.visibility = View.GONE
+            } else {
+                binding.progressBar2?.visibility = View.VISIBLE
+            }
+        })
+
+        viewModel.newsLoadErrorLD.observe(viewLifecycleOwner, Observer {
+            if(it == false) {
+                binding.txtError2?.visibility = View.GONE
+            } else {
+                binding.txtError2?.visibility = View.VISIBLE
+            }
+        })
+
+
     }
 }
