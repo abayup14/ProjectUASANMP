@@ -10,6 +10,7 @@ import com.example.hobbyapp.model.UserDatabase
 
 val DB_NAME = "project_uas_anmp"
 
+// Untuk Table User
 fun buildDB(context: Context): UserDatabase {
     val db = Room.databaseBuilder(
         context,
@@ -29,6 +30,7 @@ val MIGRATION_USER_1_2 = object : Migration(1, 2) {
     }
 }
 
+// Untuk Table News
 fun buildDb(context: Context):NewsDatabase {
     val db = Room.databaseBuilder(context,
         NewsDatabase::class.java, DB_NAME)
