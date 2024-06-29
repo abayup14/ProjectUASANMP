@@ -46,7 +46,6 @@ class LoginFragment : Fragment() {
                 viewModel.login(username, password)
             })
             alert.setNegativeButton("Batal", DialogInterface.OnClickListener { dialog, which ->
-                dialog.dismiss()
             })
             alert.create().show()
         }
