@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -35,7 +36,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         navController = (supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment).navController
-//        NavigationUI.setupActionBarWithNavController(this, navController)
+        val toolbar = Toolbar(applicationContext)
+        setSupportActionBar(toolbar)
+        NavigationUI.setupActionBarWithNavController(this, navController)
 
         if (getSharedPref(this) != 0) {
             val intent = Intent(this, HomeActivity::class.java)

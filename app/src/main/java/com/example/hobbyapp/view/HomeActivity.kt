@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -41,8 +42,10 @@ class HomeActivity : AppCompatActivity() {
             R.id.itemHistory,
             R.id.itemProfile
         ))
+        val toolbar = Toolbar(applicationContext)
+        setSupportActionBar(toolbar)
 
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig)
         binding.bottomNav.setupWithNavController(navController)
 
         if (MainActivity.getSharedPref(this) == 0) {
