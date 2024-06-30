@@ -1,17 +1,21 @@
 package com.example.hobbyapp.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import android.widget.ImageView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hobbyapp.databinding.CardItemBinding
 import com.example.hobbyapp.model.News
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 
 
-class HomeListAdapter(val newsList: ArrayList<News>, val adapterOnClick: (News) -> Unit): RecyclerView.Adapter<HomeListAdapter.ListViewHolder>(), NewsDetailClick
-//    , TodoCheckedChangeListener
+class HomeListAdapter(val newsList: ArrayList<News>): RecyclerView.Adapter<HomeListAdapter.ListViewHolder>(), NewsDetailClick
+
 {
     class ListViewHolder(var view: CardItemBinding): RecyclerView.ViewHolder(view.root)
 
@@ -25,22 +29,27 @@ class HomeListAdapter(val newsList: ArrayList<News>, val adapterOnClick: (News) 
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-//        holder.view.checkTask.text = todoList[position].title
-//
-//        holder.binding.checkTask.setOnCheckedChangeListener { buttonView, isChecked ->
-//            if (buttonView.isPressed) {
-//                adapterOnClick(todoList[position])
-//            }
-//        }
-//
-//        holder.binding.imgEdit.setOnClickListener {
-//            val action = TodoListFragmentDirections.actionEditTodoFragment(todoList[position].uuid)
-//            Navigation.findNavController(it).navigate(action)
-//        }
 
         holder.view.news = newsList[position]
-//        holder.view.listener = this
         holder.view.detailListener = this
+        load_picture(holder.itemView, newsList[position].url, holder.view.imageView2 )
+    }
+
+    fun load_picture(view: View, photo: String, imageView: ImageView) {
+        val picasso = Picasso.Builder(view.context)
+        picasso.listener { picasso, uri, exception ->
+            exception.printStackTrace()
+        }
+        picasso.build().load(photo)
+            .into(imageView, object : Callback {
+                override fun onSuccess() {
+                    imageView.visibility = View.VISIBLE
+                }
+
+                override fun onError(e: Exception?) {
+                    Log.d("picasso error", e.toString())
+                }
+            })
     }
 
     fun updateNewsList(newNewsList: List<News>) {
@@ -49,11 +58,6 @@ class HomeListAdapter(val newsList: ArrayList<News>, val adapterOnClick: (News) 
         notifyDataSetChanged()
     }
 
-//    override fun onCheckedChange(cb: CompoundButton, isChecked: Boolean, obj: News) {
-//        if (cb.isPressed) {
-//            adapterOnClick(obj)
-//        }
-//    }
 
     override fun onNewsDetailClick(v: View) {
         val id = v.tag.toString().toInt()

@@ -30,7 +30,7 @@ data class News(
     @ColumnInfo(name="deskripsi")
     var deskripsi:String,
     @ColumnInfo(name="pengarang")
-    var pengarang:Int,
+    var pengarang:String,
     @ColumnInfo(name="detail")
     var detail:String
 ) {

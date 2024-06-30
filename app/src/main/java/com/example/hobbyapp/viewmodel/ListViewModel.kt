@@ -4,8 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.hobbyapp.model.News
-//import com.example.hobbyapp.model.NewsDatabase
-import com.example.hobbyapp.model.UserDatabase
 import com.example.hobbyapp.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,16 +34,6 @@ class ListViewModel(application: Application)
         }
     }
 
-    fun clearTask(news: News) {
-        launch {
-            val db = UserDatabase.buildDatabase(
-                getApplication()
-            )
-//            db.todoDao().updateDone(todo.uuid)
-
-            newsLD.postValue(db.newsDao().selectAllNews())
-        }
-    }
 
 }
 

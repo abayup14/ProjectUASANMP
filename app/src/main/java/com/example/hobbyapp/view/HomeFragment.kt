@@ -16,7 +16,7 @@ import com.example.hobbyapp.viewmodel.ListViewModel
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: ListViewModel
-    private val todoListAdapter  = HomeListAdapter(arrayListOf(), { item -> viewModel.clearTask(item) })
+    private val newsListAdapter  = HomeListAdapter(arrayListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,17 +37,17 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         viewModel.refresh()
         binding.recView.layoutManager = LinearLayoutManager(context)
-        binding.recView.adapter = todoListAdapter
+        binding.recView.adapter = newsListAdapter
 
         observeViewModel()
     }
 
     fun observeViewModel() {
         viewModel.newsLD.observe(viewLifecycleOwner, Observer {
-            todoListAdapter.updateNewsList(it)
+            newsListAdapter.updateNewsList(it)
             if(it.isEmpty()) {
                 binding.recView?.visibility = View.GONE
-                binding.txtError2.setText("Your todo still empty.")
+                binding.txtError2.setText("No News Available")
             } else {
                 binding.recView?.visibility = View.VISIBLE
             }
