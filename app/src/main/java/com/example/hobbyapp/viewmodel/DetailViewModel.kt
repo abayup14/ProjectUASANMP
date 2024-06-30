@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.hobbyapp.model.News
-import com.example.hobbyapp.util.buildDb
+import com.example.hobbyapp.util.buildDB
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,7 +18,7 @@ class DetailNewsViewModel(application: Application)
 
     fun addTodo(list: List<News>) {
         launch {
-            val db = buildDb(getApplication())
+            val db = buildDB(getApplication())
 
             db.newsDao().insertAll(*list.toTypedArray())
         }
@@ -28,7 +28,7 @@ class DetailNewsViewModel(application: Application)
 
     fun fetch(id:Int) {
         launch {
-            val db = buildDb(getApplication())
+            val db = buildDB(getApplication())
             newsLD.postValue(db.newsDao().selectNews(id))
         }
     }

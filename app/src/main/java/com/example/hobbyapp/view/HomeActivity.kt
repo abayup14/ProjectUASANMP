@@ -43,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
             R.id.itemProfile
         ))
         val toolbar = Toolbar(applicationContext)
-        setSupportActionBar(toolbar)
+//        setSupportActionBar(toolbar)
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig)
         binding.bottomNav.setupWithNavController(navController)
